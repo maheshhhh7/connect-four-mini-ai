@@ -1,56 +1,71 @@
-# Connect Four Mini AI
+# Connect Four Mini AI – Minimax
 
-A Connect Four game where a human player competes against an AI opponent using the **Depth-Limited Minimax algorithm** with a **static evaluation function**.
+A simple Connect Four game where a human player plays against an AI opponent.
 
----
-
-## 1. Problem Statement
-
-The objective is to develop a Connect Four AI agent that can play against a human player.
-
-The game is played on a **6 × 7 board**. Players take turns dropping their pieces into one of the seven columns. The first player to connect four pieces horizontally, vertically, or diagonally wins the game.
-
-The AI must select its moves using **depth-limited Minimax** and evaluate non-terminal game states using a static heuristic function.
+The AI uses the **Depth-Limited Minimax Algorithm** with a **Static Evaluation Function** to select its moves.
 
 ---
 
-## 2. Objectives
+## Project Overview
 
-- Implement a playable 6 × 7 Connect Four game.
-- Implement the Minimax algorithm.
-- Use a fixed search depth to limit the game-tree search.
-- Implement a static evaluation function for non-terminal boards.
-- Allow a human player to play against the AI.
-- Detect wins, draws, and invalid moves.
-- Display the number of nodes searched by the AI.
+Connect Four is a two-player game played on a **6 × 7 board**.
+
+Players take turns dropping pieces into columns. The first player to connect four pieces horizontally, vertically, or diagonally wins the game.
+
+In this project:
+
+- `X` represents the Human player.
+- `O` represents the AI player.
+- `.` represents an empty position.
+
+The AI uses Minimax to look ahead at possible future moves and select a move with the best evaluation.
 
 ---
 
-## 3. Approach
+## Objectives
 
-The project uses the **Minimax algorithm** to make decisions.
+- Implement a playable Connect Four game.
+- Implement the Depth-Limited Minimax algorithm.
+- Use a static evaluation function.
+- Allow a human to play against the AI.
+- Detect horizontal, vertical, and diagonal wins.
+- Detect draw conditions.
+- Handle invalid user input.
+- Count the number of nodes explored by the AI.
 
-For every possible AI move, the program creates a copy of the board and searches possible future moves.
+---
 
-The AI acts as the **maximizing player**, while the human player is treated as the **minimizing player**.
+## Technologies Used
+
+- Python 3
+- Minimax Algorithm
+- Static Evaluation Function
+- Git and GitHub
+
+---
+
+## Algorithm
+
+### Depth-Limited Minimax
+
+The AI uses the Minimax algorithm to evaluate possible future game states.
+
+The AI is the **maximizing player**, while the Human is treated as the **minimizing player**.
 
 The search continues until:
 
-1. A player wins.
-2. The board becomes full.
-3. The selected search depth reaches zero.
+1. The AI wins.
+2. The Human wins.
+3. There are no available moves.
+4. The selected search depth reaches zero.
 
-When the depth limit is reached without a winner, the board is evaluated using the static evaluation function.
+When the depth limit is reached, the static evaluation function is used.
 
 ---
 
-## 4. Minimax Algorithm
+## Search Depth
 
-The Minimax algorithm considers possible future game states.
+The project uses a fixed search depth of **4**.
 
-### Maximizing Step
-
-The AI tries to choose the move with the highest evaluation score.
-
-```text
-Best Score = Maximum of possible scores
+```python
+DEPTH = 4
