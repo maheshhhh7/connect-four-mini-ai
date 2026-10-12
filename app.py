@@ -24,36 +24,32 @@ st.set_page_config(
 )
 
 
-# ---------------- PROFESSIONAL DARK THEME ----------------
+# ---------------- DARK THEME ----------------
 
 st.markdown(
     """
     <style>
-    /* Main application background */
     .stApp {
         background:
             radial-gradient(
                 ellipse at top left,
-                rgba(37, 99, 235, 0.14),
+                rgba(37, 99, 235, 0.12),
                 transparent 45%
             ),
             linear-gradient(135deg, #080d19 0%, #101a2e 100%);
         color: #e5edf9;
     }
 
-    /* Main content spacing */
     .block-container {
         max-width: 1450px;
         padding-top: 2rem;
         padding-bottom: 3rem;
     }
 
-    /* Header */
     [data-testid="stHeader"] {
         background: rgba(8, 13, 25, 0.75);
     }
 
-    /* Hero section */
     .hero {
         padding: 28px 30px;
         margin-bottom: 24px;
@@ -101,21 +97,15 @@ st.markdown(
         font-weight: 600;
     }
 
-    /* Headings */
     h1, h2, h3 {
         color: #f8fafc !important;
         letter-spacing: -0.5px;
-    }
-
-    h2 {
-        margin-top: 14px !important;
     }
 
     p, label, li {
         color: #d5deed;
     }
 
-    /* Tabs */
     [data-testid="stTabs"] [role="tablist"] {
         gap: 10px;
         border-bottom: 1px solid #29364d;
@@ -125,7 +115,6 @@ st.markdown(
         padding: 12px 17px;
         border-radius: 12px 12px 0 0;
         font-weight: 650;
-        transition: background 0.2s ease;
     }
 
     [data-testid="stTabs"] button[role="tab"]:hover {
@@ -136,7 +125,6 @@ st.markdown(
         color: #93c5fd;
     }
 
-    /* Metric cards */
     [data-testid="stMetric"] {
         padding: 19px;
         border-radius: 16px;
@@ -158,16 +146,11 @@ st.markdown(
         font-weight: 750;
     }
 
-    /* Buttons */
     .stButton > button {
         min-height: 43px;
         border-radius: 11px;
         border: 1px solid #334766;
-        background: linear-gradient(
-            135deg,
-            #172640,
-            #1b2e4c
-        );
+        background: linear-gradient(135deg, #172640, #1b2e4c);
         color: #eaf2ff;
         font-weight: 650;
         transition: all 0.18s ease;
@@ -175,93 +158,50 @@ st.markdown(
 
     .stButton > button:hover {
         border-color: #60a5fa;
-        background: linear-gradient(
-            135deg,
-            #1d3b65,
-            #263d68
-        );
+        background: linear-gradient(135deg, #1d3b65, #263d68);
         color: #ffffff;
-        transform: translateY(-1px);
     }
 
-    .stButton > button:focus {
-        border-color: #93c5fd;
-        color: #ffffff;
-        box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
-    }
-
-    /* Status messages */
     [data-testid="stAlert"] {
         border-radius: 13px;
         border: 1px solid rgba(148, 163, 184, 0.18);
     }
 
-    /* Expanders */
     [data-testid="stExpander"] {
         border: 1px solid rgba(148, 163, 184, 0.20);
         border-radius: 14px;
         background: rgba(15, 23, 42, 0.48);
     }
 
-    /* Data tables */
     [data-testid="stDataFrame"] {
         border: 1px solid #29364d;
         border-radius: 12px;
         overflow: hidden;
     }
 
-    /* Slider */
-    [data-testid="stSlider"] {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-    /* Dividers */
     hr {
         border-color: rgba(148, 163, 184, 0.18) !important;
     }
 
-    /* Board styling */
+    /* Compact board: preserve the previous size */
     .board-shell {
-        padding: 13px;
-        border-radius: 18px;
-        background: linear-gradient(
-            145deg,
-            #155eaa,
-            #123b78
-        );
-        border: 1px solid rgba(147, 197, 253, 0.35);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.20);
+        padding: 10px;
+        border-radius: 12px;
+        background: linear-gradient(145deg, #1769aa, #124b83);
+        border: 1px solid rgba(147, 197, 253, 0.28);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
     }
 
     .board-cell {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 46px;
-        margin: 3px;
-        border-radius: 50%;
-        background: #0b1930;
-        border: 2px solid rgba(191, 219, 254, 0.25);
-        font-size: 29px;
+        text-align: center;
+        font-size: 27px;
         line-height: 1.3;
+        background: linear-gradient(145deg, #1769aa, #124b83);
+        border-radius: 6px;
+        padding: 6px 0;
+        margin-bottom: 3px;
     }
 
-    .board-red {
-        color: #fb4b64;
-        text-shadow: 0 2px 12px rgba(251, 75, 100, 0.35);
-    }
-
-    .board-yellow {
-        color: #facc15;
-        text-shadow: 0 2px 12px rgba(250, 204, 21, 0.3);
-    }
-
-    .board-empty {
-        color: #1d3557;
-    }
-
-    /* Footer */
     .app-footer {
         text-align: center;
         color: #8fa2bd;
@@ -273,12 +213,11 @@ st.markdown(
         visibility: hidden;
     }
 
-    /* Small screens */
     @media (max-width: 700px) {
         .block-container {
             padding-top: 1rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
+            padding-left: 0.7rem;
+            padding-right: 0.7rem;
         }
 
         .hero {
@@ -286,14 +225,14 @@ st.markdown(
             border-radius: 16px;
         }
 
-        .board-cell {
-            min-height: 30px;
-            margin: 1px;
-            font-size: 20px;
-        }
-
         .board-shell {
             padding: 5px;
+        }
+
+        .board-cell {
+            font-size: 20px;
+            padding: 4px 0;
+            margin-bottom: 2px;
         }
 
         [data-testid="stMetric"] {
@@ -365,6 +304,7 @@ def minimax_node_count(board, depth):
             return -100000
 
         moves = cf.valid(position)
+
         if remaining == 0 or not moves:
             return cf.score(position)
 
@@ -458,30 +398,30 @@ def play(column):
         )
 
 
-# ---------------- BOARD DISPLAY ----------------
+# ---------------- COMPACT BOARD DISPLAY ----------------
 
 def show_board(board):
-    st.markdown('<div class="board-shell">', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="board-shell">',
+        unsafe_allow_html=True,
+    )
 
     for row in board:
-        cells = st.columns(7, gap="small")
+        cells = st.columns(7)
 
         for column, cell in enumerate(cells):
             piece = row[column]
 
             if piece == cf.HUMAN:
-                symbol = "●"
-                piece_class = "board-red"
+                symbol = "🔴"
             elif piece == cf.AI:
-                symbol = "●"
-                piece_class = "board-yellow"
+                symbol = "🟡"
             else:
-                symbol = "●"
-                piece_class = "board-empty"
+                symbol = "⚪"
 
             cell.markdown(
                 f"""
-                <div class="board-cell {piece_class}">
+                <div class="board-cell">
                     {symbol}
                 </div>
                 """,
@@ -597,18 +537,12 @@ with game_tab:
 
         first, second, third = st.columns(3)
 
-        first.metric(
-            "Minimax nodes",
-            f"{stats['Minimax nodes']:,}",
-        )
+        first.metric("Minimax nodes", f"{stats['Minimax nodes']:,}")
         second.metric(
             "Alpha-Beta nodes",
             f"{stats['Alpha-Beta nodes']:,}",
         )
-        third.metric(
-            "Pruning cutoffs",
-            f"{stats['Cutoffs']:,}",
-        )
+        third.metric("Pruning cutoffs", f"{stats['Cutoffs']:,}")
 
         if stats["Minimax nodes"]:
             reduction = (
