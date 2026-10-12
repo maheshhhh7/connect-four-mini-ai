@@ -1,188 +1,144 @@
-# Connect Four Mini AI – Minimax
 
-A Python implementation of the **Connect Four** game with an AI opponent powered by the **Depth-Limited Minimax algorithm**. The AI analyzes possible future moves, evaluates board positions using a heuristic function, and chooses the best move based on Minimax search.
+# Connect Four AI Lab
 
----
+An interactive Connect Four project demonstrating adversarial search,
+explainable AI, constraint-based puzzle generation, and Monte Carlo
+simulation through a Streamlit web application.
 
-## Project Overview
+## Features
 
-Connect Four is a classic two-player strategy game played on a **6 × 7 board**. The human player uses **X** and the AI uses **O**. Players take turns dropping pieces into columns, and the first player to connect **four pieces** horizontally, vertically, or diagonally wins.
+- Interactive Connect Four game: human vs AI.
+- Minimax search for game-tree evaluation.
+- Alpha-Beta pruning with center-first move ordering.
+- Explainable AI dashboard showing candidate-column evaluation scores.
+- Search statistics, including visited nodes and pruning cutoffs.
+- CSP-style puzzle generator for positions with an immediate winning move.
+- Monte Carlo agent using random rollouts to estimate candidate move outcomes.
+- AI comparison dashboard for Alpha-Beta and Monte Carlo.
+- Automated tests for core game logic and AI features.
 
-This project demonstrates how **Artificial Intelligence** can be used to play a turn-based game using the Minimax decision-making algorithm.
+## Technologies
 
-### Features
+- Python
+- Streamlit
+- Pandas
+- Pytest
 
-* 6 × 7 Connect Four game board.
-* Human vs AI gameplay.
-* AI implemented using **Depth-Limited Minimax**.
-* Static heuristic evaluation function.
-* Win detection in all four directions.
-* Input validation and draw detection.
-* Automated testing using **Pytest**.
-
----
-
-## Directory Structure
+## Project Structure
 
 ```text
 connect-four-mini-ai/
-│
+├── app.py
 ├── src/
-│   └── connect_four.py          # Main game and AI implementation
-│
+│   ├── connect_four.py
+│   ├── alpha_beta.py
+│   ├── puzzle_generator.py
+│   └── monte_carlo.py
 ├── tests/
-│   └── test_connect_four.py     # Automated test cases
-│
+│   ├── test_connect_four.py
+│   └── test_ai_features.py
 ├── docs/
-│   ├── report.pdf               # Project report
-│   └── screenshots/
-│       ├── game_execution.png   # Game execution screenshot
-│       └── test_results.png     # Pytest result screenshot
-│
-├── README.md                    # Project documentation
-├── requirements.txt             # Required Python packages
-├── .gitignore                   # Git ignored files
-└── LICENSE                      # MIT License
+├── requirements.txt
+└── README.md
 ```
 
----
+## Requirements
 
-## Problem Statement
+- Python 3.10 or newer recommended.
+- pip package manager.
 
-The challenge is to build an AI player that can make intelligent decisions in Connect Four instead of selecting random moves.
+## Installation
 
-The AI must:
-
-* Find all valid moves.
-* Predict future game states.
-* Consider the opponent's best response.
-* Evaluate each board position.
-* Choose the move with the highest possible score.
-
-Since searching every possible game state is computationally expensive, the AI uses **Depth-Limited Minimax** with a search depth of **4**.
-
----
-
-## Approach
-
-### Minimax Algorithm
-
-Minimax is a search algorithm used in two-player games where one player tries to maximize the score and the other tries to minimize it.
-
-* **AI (O)** → Maximizing Player
-* **Human (X)** → Minimizing Player
-
-### Working Flow
-
-1. Generate all valid moves.
-2. Simulate each AI move.
-3. Predict the human's response.
-4. Continue searching until **depth = 4**.
-5. Evaluate the board using a heuristic function.
-6. Compare all scores.
-7. Choose the move with the highest score.
-
-### Evaluation Function
-
-The AI evaluates non-terminal board positions using the following heuristic:
-
-| Board Position            |   Score |
-| ------------------------- | ------: |
-| AI piece (`O`)            |      +2 |
-| Human piece (`X`)         |      -2 |
-| AI piece in center column |      +3 |
-| AI win                    | +100000 |
-| Human win                 | -100000 |
-
-The center column is given extra preference because it provides more opportunities to create winning combinations.
-
----
-
-## How to Run
-
-### 1. Clone the Repository
+Clone the repository:
 
 ```bash
 git clone https://github.com/maheshhhh7/connect-four-mini-ai.git
 cd connect-four-mini-ai
 ```
 
-### 2. Install Requirements
+Create and activate a virtual environment.
+
+Windows PowerShell:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+Install dependencies:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install streamlit pandas pytest
 ```
 
-### 3. Run the Game
+## Run the Application
 
 ```bash
-python src/connect_four.py
+python -m streamlit run app.py
 ```
 
-### 4. Run Tests
+Open the local URL displayed in the terminal, usually:
+
+```text
+http://localhost:8501
+```
+
+## Run Tests
 
 ```bash
-pytest -q
+python -m pytest -v
 ```
 
----
+## Algorithms
 
-## Sample Input / Output
+### Minimax
 
-### Sample Input
+Explores possible moves up to a fixed depth and evaluates board positions.
+The AI uses the evaluation score to choose a move.
 
-```text
-Your move (1-7): 4
-```
+### Alpha-Beta Pruning
 
-### Sample Output
+Optimizes Minimax by pruning branches that cannot affect the final decision.
+Center-first move ordering can improve pruning efficiency.
 
-```text
-AI thinking...
-AI chose 4 | Nodes: 2800
-```
+### Explainable AI
 
-The AI analyzes possible future moves using Minimax, evaluates the board, and selects the move with the highest score.
+Displays heuristic scores for available columns. These scores explain the
+search evaluation but are not probabilities or guaranteed winning chances.
 
-### Test Output
+### CSP-Style Puzzle Generation
 
-```text
-3 passed
-```
+Builds legal board positions, checks basic board constraints, and searches
+for positions with an immediate winning move. This is a demonstration of
+constraint checking, not a complete general-purpose CSP solver.
 
-All implemented test cases execute successfully.
+### Monte Carlo Simulation
 
----
+Runs random simulated games after candidate moves and records wins, losses,
+draws, and estimated win rates. Results can vary with random rollouts and
+are not guarantees of future outcomes.
 
-## Visual Artifacts & Documentation
+## Limitations
 
-The **docs** folder contains all supporting materials for the project.
+- Search depth is limited.
+- Heuristic evaluation may miss strong moves.
+- Monte Carlo results depend on the number and randomness of simulations.
+- Puzzle generation targets immediate winning moves rather than all win-in-N
+  puzzles.
+- The application is an educational prototype, not a perfect Connect Four AI.
 
-| File                             | Description                                                                             |
-| -------------------------------- | --------------------------------------------------------------------------------------- |
-| `report.pdf`                     | Project report with problem formulation, approach, complexity, results, and reflection. |
-| `screenshots/game_execution.png` | Screenshot of the Connect Four game running with AI move output.                        |
-| `screenshots/test_results.png`   | Screenshot showing successful Pytest execution (`3 passed`).                            |
+## Testing
 
-These files provide visual evidence of the project's implementation and testing.
+Run `python -m pytest -v` to execute the automated test suite.
 
----
+## Future Improvements
 
-## Results
-
-The project was successfully implemented and tested.
-
-* AI successfully plays Connect Four.
-* Minimax search is used for AI decision-making.
-* Search depth is limited to **4**.
-* Board positions are evaluated using a heuristic function.
-* The game displays the number of nodes explored during AI search.
-* All automated tests passed successfully.
-
----
+- Add configurable search depth.
+- Compare performance across multiple board positions.
+- Improve puzzle generation for win-in-N challenges.
+- Add reproducible Monte Carlo benchmarks.
+- Improve visual explanations of tactical decisions.
 
 ## License
 
-This project is licensed under the **MIT License**.
-
-See the `LICENSE` file for complete license information.
+See the repository's LICENSE file.
